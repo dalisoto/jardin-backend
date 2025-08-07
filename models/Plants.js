@@ -7,13 +7,13 @@ const plantSchema = new mongoose.Schema({
     },
 
     // Nombre científico (ej. "Rosa spp.")
-    nombreCientifico: String,
+    //nombreCientifico: String,
 
     // Familia botánica (ej. "Rosaceae")
     family: String,
 
     // Nivel de dificultad de cuidado
-    nivelCuidad: {
+    nivelCuidado: {
         type: String,
         enum: ['Fácil', 'Moderado', 'Difícil'],  // Solo estos valores permitidos
         default: 'Moderado'
@@ -21,10 +21,10 @@ const plantSchema = new mongoose.Schema({
 
     // Necesidades de riego
     riego: {
-        frecuencia: String,      // Ej: "1 vez por semana"
-        cantidad: String,         // Ej: "250ml"
-        verano: String, // Ajustes para verano
-        invierno: String  // Ajustes para invierno
+        type: Number
+    },
+    cantidad : {    //Cantidad de agua, en mililitros xd 
+        type:Number
     },
 
     // Requerimientos de luz (
@@ -36,8 +36,8 @@ const plantSchema = new mongoose.Schema({
 
     // Rango de temperatura ideal
     temperatura: {
-        min: Number,  // Temperatura mínima en °C
-        max: Number   // Temperatura máxima en °C
+        type: String,
+        enum:['Frio','Calido'],
     },
 
     // Humedad requerida
@@ -53,18 +53,11 @@ const plantSchema = new mongoose.Schema({
         enum:['Drenado','Arcilloso','Compacto']
     },  
 
-    // Recomendaciones de fertilización
-    fertilizacion: String,  
-
-    // Problemas comunes y sus soluciones
-    problemasComunes: [{
-        name: String,         // Ej: "Manchas en las hojas"
-        description: String,  // Descripción del problema
-        solution: String      // Cómo solucionarlo
-    }],
-
     // Métodos de propagación
-    propagacion: [String], // Ej: ["Esquejes", "Semillas"]
+    propagacion: {
+        type: String,
+        enum:['Esqueje','Semilla']
+    },
 
     // Si la planta es tóxica para mascotas o niños
     toxicity: Boolean,
